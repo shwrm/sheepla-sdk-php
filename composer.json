@@ -1,0 +1,31 @@
+{
+    "name": "shwrm/sheepla-sdk-php",
+    "description": "Sheepla SDK for PHP",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sebastian Grodzicki",
+            "email": "sebastian@shwrm.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.6",
+        "jms/serializer": "^1.1",
+        "guzzlehttp/guzzle": "^6.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.3",
+        "mockery/mockery": "^0.9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Sheepla\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Sheepla\\Test\\": "tests/"
+        }
+    }
+}
