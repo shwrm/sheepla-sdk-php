@@ -5,6 +5,7 @@ namespace Sheepla;
 use GuzzleHttp\Client as HttpClient;
 use JMS\Serializer\SerializerInterface;
 use Sheepla\Request\AbstractRequest;
+use Sheepla\Response\AbstractResponse;
 
 class Client
 {
@@ -23,6 +24,9 @@ class Client
     const CARRIER_UPS_POLSKA = 12;
     const CARRIER_XPRESS_COURIERS = 29;
 
+    const FORMAT_JSON = 'json';
+    const FORMAT_XML = 'xml';
+
     /**
      * Internal storage for client
      *
@@ -38,6 +42,13 @@ class Client
     private $serializer;
 
     /**
+     * Internal storage for response body
+     *
+     * @var string
+     */
+    private $body;
+
+    /**
      * @param HttpClient $client
      * @param SerializerInterface $serializer
      */
@@ -47,17 +58,39 @@ class Client
         $this->setSerializer($serializer);
     }
 
+    /**
+     * Send request
+     * 
+     * @param AbstractRequest $request
+     * @return mixed
+     */
     public function sendRequest(AbstractRequest $request)
     {
-        return $this
+        $response = $this
             ->getClient()
             ->request(
                 'POST',
                 $request->getRequestMethod(),
                 [
-                    'body' => $this->getSerializer()->serialize($request, 'xml'),
+                    'body' => $this->getSerializer()->serialize($request, self::FORMAT_XML),
                 ]
             );
+
+        $this->setBody($response->getBody());
+
+        return $response;
+    }
+
+    /**
+     * Get serialized response
+     * 
+     * @param AbstractResponse $response
+     * @param string $format
+     * @return AbstractResponse
+     */
+    public function getResponse(AbstractResponse $response, $format = self::FORMAT_JSON)
+    {
+        return $this->getSerializer()->deserialize($this->getBody(), $response, $format);
     }
 
     /**
@@ -102,6 +135,27 @@ class Client
     public function setSerializer(SerializerInterface $serializer)
     {
         $this->serializer = $serializer;
+
+        return $this;
+    }
+
+    /**
+     * Get body
+     *
+     * @return string
+     */
+    public function getBody() {
+        return $this->body;
+    }
+
+    /**
+     * Set body
+     *
+     * @param string $body
+     * @return Client
+     */
+    public function setBody($body) {
+        $this->body = $body;
 
         return $this;
     }

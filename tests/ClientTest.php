@@ -53,4 +53,12 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(12, $sheepla->getConstant('CARRIER_UPS_POLSKA'));
         $this->assertEquals(29, $sheepla->getConstant('CARRIER_XPRESS_COURIERS'));
     }
+
+    public function testFormatConstants()
+    {
+        $sheepla = new \ReflectionClass('Sheepla\Client');
+
+        $this->assertEquals('json', $sheepla->getConstant('FORMAT_JSON'));
+        $this->assertEquals('xml', $sheepla->getConstant('FORMAT_XML'));
+    }
 }
