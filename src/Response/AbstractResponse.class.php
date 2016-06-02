@@ -8,7 +8,7 @@ abstract class AbstractResponse
 {
     /**
      * @JMS\AccessType("public_method")
-     * @JMS\Accessor(getter="getPops", setter="setPops")
+     * @JMS\Accessor(getter="getErrors", setter="setErrors")
      * @JMS\Type("array<Sheepla\Response\ResponseError>")
      * @JMS\XmlList(entry="error")
      */
