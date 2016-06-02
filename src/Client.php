@@ -88,7 +88,7 @@ class Client
      * @param string $format
      * @return AbstractResponse
      */
-    public function getResponse(AbstractResponse $response, $format = self::FORMAT_JSON)
+    public function getResponse(AbstractResponse $response, $format = self::FORMAT_XML)
     {
         return $this->getSerializer()->deserialize($this->getBody(), $response, $format);
     }
