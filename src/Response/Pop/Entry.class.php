@@ -127,6 +127,34 @@ class Entry
     private $is24h;
 
     /**
+     * Sanitize string
+     *
+     * @param string $value
+     * @return string
+     */
+    protected function sanitizeString($value) {
+        return str_replace('  ', ' ', trim($value));
+    }
+
+    /**
+     * @JMS\PostDeserialize()
+     */
+    protected function postDeserialize() {
+        // get methods with prefix "set"
+        $methods = preg_grep('/^set/', get_class_methods($this));
+        foreach ($methods as $method) {
+            $getter = 'get' . str_replace('set', '', $method);
+            if (method_exists($this, $getter)) {
+                $value = $this->{$getter}();
+                if (is_array($value)) continue;
+
+                $sanitizedValue = $this->sanitizeString($value);
+                $this->{$method}($sanitizedValue);
+            }
+        }
+    }
+
+    /**
      * Get name
      *
      * @return mixed
