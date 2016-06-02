@@ -1,6 +1,6 @@
 <?php
 
-namespace Logic\Serializer\Sheepla\Response\Pop;
+namespace Sheepla\Response\Pop;
 
 use JMS\Serializer\Annotation as JMS;
 
