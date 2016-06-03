@@ -8,7 +8,6 @@ class ResponseError
 {
     /**
      * @JMS\AccessType("public_method")
-     * @JMS\Accessor(getter="getCode", setter="setCode")
      * @JMS\Type("string")
      * @JMS\XmlAttribute()
      */
@@ -16,7 +15,6 @@ class ResponseError
 
     /**
      * @JMS\AccessType("public_method")
-     * @JMS\Accessor(getter="getMessage", setter="setMessage")
      * @JMS\Type("string")
      * @JMS\XmlValue()
      */
@@ -41,7 +39,6 @@ class ResponseError
     public function setCode($code)
     {
         $this->code = $code;
-
         return $this;
     }
 
@@ -64,7 +61,6 @@ class ResponseError
     public function setMessage($message)
     {
         $this->message = $message;
-
         return $this;
     }
 }

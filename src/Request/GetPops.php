@@ -7,35 +7,33 @@ use JMS\Serializer\Annotation as JMS;
 /**
  * @JMS\XmlRoot("getPOPsRequest")
  */
-class GetPops extends AbstractRequest {
+class GetPops extends AbstractRequest
+{
     /**
      * @JMS\AccessType("public_method")
-     * @JMS\SerializedName("carrierId")
      * @JMS\XmlElement(cdata = false)
      */
     private $carrierId;
 
     /**
      * @JMS\AccessType("public_method")
-     * @JMS\SerializedName("carrierAccountId")
      * @JMS\XmlElement(cdata = false)
      */
     private $carrierAccountId;
 
     /**
      * @JMS\AccessType("public_method")
-     * @JMS\SerializedName("templateId")
      * @JMS\XmlElement(cdata = false)
      */
     private $templateId;
 
-    /*                                    Setters/Getters START                                      */
     /**
      * Get carrierId
      *
      * @return int
      */
-    public function getCarrierId() {
+    public function getCarrierId()
+    {
         return $this->carrierId;
     }
 
@@ -45,9 +43,9 @@ class GetPops extends AbstractRequest {
      * @param int $carrierId
      * @return GetPops
      */
-    public function setCarrierId($carrierId) {
+    public function setCarrierId($carrierId)
+    {
         $this->carrierId = $carrierId;
-
         return $this;
     }
 
@@ -56,7 +54,8 @@ class GetPops extends AbstractRequest {
      *
      * @return int
      */
-    public function getCarrierAccountId() {
+    public function getCarrierAccountId()
+    {
         return $this->carrierAccountId;
     }
 
@@ -66,7 +65,8 @@ class GetPops extends AbstractRequest {
      * @param int $carrierAccountId
      * @return GetPops
      */
-    public function setCarrierAccountId($carrierAccountId) {
+    public function setCarrierAccountId($carrierAccountId)
+    {
         $this->carrierAccountId = $carrierAccountId;
         return $this;
     }
@@ -76,7 +76,8 @@ class GetPops extends AbstractRequest {
      *
      * @return int
      */
-    public function getTemplateId() {
+    public function getTemplateId()
+    {
         return $this->templateId;
     }
 
@@ -86,19 +87,17 @@ class GetPops extends AbstractRequest {
      * @param int $templateId
      * @return GetPops
      */
-    public function setTemplateId($templateId) {
+    public function setTemplateId($templateId)
+    {
         $this->templateId = $templateId;
-
         return $this;
     }
-    /*                                    Setters/Getters END                                        */
 
-    /*                              Abstract methods implementation START                            */
     /**
      * @see AbstractRequest::getRequestMethod()
      */
-    public function getRequestMethod() {
+    public function getRequestMethod()
+    {
         return 'getPOPs';
     }
-    /*                              Abstract methods implementation END                              */
 }

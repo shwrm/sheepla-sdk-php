@@ -4,11 +4,10 @@ namespace Sheepla\Response\Pop;
 
 use JMS\Serializer\Annotation as JMS;
 
-class Entry
+class Pop
 {
     /**
      * @JMS\AccessType("public_method")
-     * @JMS\Accessor(getter="getName", setter="setName")
      * @JMS\Type("string")
      * @JMS\SerializedName("Name")
      */
@@ -16,7 +15,6 @@ class Entry
 
     /**
      * @JMS\AccessType("public_method")
-     * @JMS\Accessor(getter="getCarrierCode", setter="setCarrierCode")
      * @JMS\Type("integer")
      * @JMS\SerializedName("CarrierCode")
      */
@@ -24,7 +22,6 @@ class Entry
 
     /**
      * @JMS\AccessType("public_method")
-     * @JMS\Accessor(getter="getStreet", setter="setStreet")
      * @JMS\Type("string")
      * @JMS\SerializedName("Street")
      */
@@ -32,7 +29,6 @@ class Entry
 
     /**
      * @JMS\AccessType("public_method")
-     * @JMS\Accessor(getter="getBuildingNumber", setter="setBuildingNumber")
      * @JMS\Type("string")
      * @JMS\SerializedName("BuildingNumber")
      */
@@ -40,7 +36,6 @@ class Entry
 
     /**
      * @JMS\AccessType("public_method")
-     * @JMS\Accessor(getter="getZipCode", setter="setZipCode")
      * @JMS\Type("string")
      * @JMS\SerializedName("ZipCode")
      */
@@ -48,7 +43,6 @@ class Entry
 
     /**
      * @JMS\AccessType("public_method")
-     * @JMS\Accessor(getter="getCity", setter="setCity")
      * @JMS\Type("string")
      * @JMS\SerializedName("City")
      */
@@ -56,7 +50,6 @@ class Entry
 
     /**
      * @JMS\AccessType("public_method")
-     * @JMS\Accessor(getter="getLatitude", setter="setLatitude")
      * @JMS\Type("string")
      * @JMS\SerializedName("Latitude")
      */
@@ -64,7 +57,6 @@ class Entry
 
     /**
      * @JMS\AccessType("public_method")
-     * @JMS\Accessor(getter="getLongitude", setter="setLongitude")
      * @JMS\Type("string")
      * @JMS\SerializedName("Longitude")
      */
@@ -72,7 +64,6 @@ class Entry
 
     /**
      * @JMS\AccessType("public_method")
-     * @JMS\Accessor(getter="getPaymentAvailable", setter="setPaymentAvailable")
      * @JMS\Type("boolean")
      * @JMS\SerializedName("PaymentAvailable")
      */
@@ -80,7 +71,6 @@ class Entry
 
     /**
      * @JMS\AccessType("public_method")
-     * @JMS\Accessor(getter="getDisplayName", setter="setDisplayName")
      * @JMS\Type("string")
      * @JMS\SerializedName("DisplayName")
      */
@@ -88,7 +78,6 @@ class Entry
 
     /**
      * @JMS\AccessType("public_method")
-     * @JMS\Accessor(getter="getDescription", setter="setDescription")
      * @JMS\Type("string")
      * @JMS\SerializedName("Description")
      */
@@ -96,7 +85,6 @@ class Entry
 
     /**
      * @JMS\AccessType("public_method")
-     * @JMS\Accessor(getter="getWorkingHours", setter="setWorkingHours")
      * @JMS\Type("string")
      * @JMS\SerializedName("WorkingHours")
      */
@@ -104,7 +92,6 @@ class Entry
 
     /**
      * @JMS\AccessType("public_method")
-     * @JMS\Accessor(getter="getPhotoLink", setter="setPhotoLink")
      * @JMS\Type("string")
      * @JMS\SerializedName("PhotoLink")
      */
@@ -112,7 +99,6 @@ class Entry
 
     /**
      * @JMS\AccessType("public_method")
-     * @JMS\Accessor(getter="getIsPop", setter="setIsPop")
      * @JMS\Type("boolean")
      * @JMS\SerializedName("IsPop")
      */
@@ -120,7 +106,6 @@ class Entry
 
     /**
      * @JMS\AccessType("public_method")
-     * @JMS\Accessor(getter="getIs24h", setter="setIs24h")
      * @JMS\Type("boolean")
      * @JMS\SerializedName("Is24h")
      */
@@ -132,14 +117,14 @@ class Entry
      * @param string $value
      * @return string
      */
-    protected function sanitizeString($value) {
+    private function sanitizeString($value) {
         return str_replace('  ', ' ', trim($value));
     }
 
     /**
      * @JMS\PostDeserialize()
      */
-    protected function postDeserialize() {
+    private function postDeserialize() {
         // get methods with prefix "set"
         $methods = preg_grep('/^set/', get_class_methods($this));
         foreach ($methods as $method) {
@@ -157,7 +142,7 @@ class Entry
     /**
      * Get name
      *
-     * @return mixed
+     * @return string
      */
     public function getName()
     {
@@ -167,20 +152,19 @@ class Entry
     /**
      * Set name
      *
-     * @param mixed $name
-     * @return Model
+     * @param string $name
+     * @return Pop
      */
     public function setName($name)
     {
         $this->name = $name;
-
         return $this;
     }
 
     /**
      * Get carrierCode
      *
-     * @return mixed
+     * @return string
      */
     public function getCarrierCode()
     {
@@ -190,20 +174,19 @@ class Entry
     /**
      * Set carrierCode
      *
-     * @param mixed $carrierCode
-     * @return Model
+     * @param string $carrierCode
+     * @return Pop
      */
     public function setCarrierCode($carrierCode)
     {
         $this->carrierCode = $carrierCode;
-
         return $this;
     }
 
     /**
      * Get street
      *
-     * @return mixed
+     * @return string
      */
     public function getStreet()
     {
@@ -213,20 +196,19 @@ class Entry
     /**
      * Set street
      *
-     * @param mixed $street
-     * @return Model
+     * @param string $street
+     * @return Pop
      */
     public function setStreet($street)
     {
         $this->street = $street;
-
         return $this;
     }
 
     /**
      * Get buildingNumber
      *
-     * @return mixed
+     * @return string
      */
     public function getBuildingNumber()
     {
@@ -236,20 +218,19 @@ class Entry
     /**
      * Set buildingNumber
      *
-     * @param mixed $buildingNumber
-     * @return Model
+     * @param string $buildingNumber
+     * @return Pop
      */
     public function setBuildingNumber($buildingNumber)
     {
         $this->buildingNumber = $buildingNumber;
-
         return $this;
     }
 
     /**
      * Get zipCode
      *
-     * @return mixed
+     * @return string
      */
     public function getZipCode()
     {
@@ -259,20 +240,19 @@ class Entry
     /**
      * Set zipCode
      *
-     * @param mixed $zipCode
-     * @return Model
+     * @param string $zipCode
+     * @return Pop
      */
     public function setZipCode($zipCode)
     {
         $this->zipCode = $zipCode;
-
         return $this;
     }
 
     /**
      * Get city
      *
-     * @return mixed
+     * @return string
      */
     public function getCity()
     {
@@ -282,20 +262,19 @@ class Entry
     /**
      * Set city
      *
-     * @param mixed $city
-     * @return Model
+     * @param string $city
+     * @return Pop
      */
     public function setCity($city)
     {
         $this->city = $city;
-
         return $this;
     }
 
     /**
      * Get latitude
      *
-     * @return mixed
+     * @return string
      */
     public function getLatitude()
     {
@@ -305,20 +284,19 @@ class Entry
     /**
      * Set latitude
      *
-     * @param mixed $latitude
-     * @return Model
+     * @param string $latitude
+     * @return Pop
      */
     public function setLatitude($latitude)
     {
         $this->latitude = $latitude;
-
         return $this;
     }
 
     /**
      * Get longitude
      *
-     * @return mixed
+     * @return string
      */
     public function getLongitude()
     {
@@ -328,20 +306,19 @@ class Entry
     /**
      * Set longitude
      *
-     * @param mixed $longitude
-     * @return Model
+     * @param string $longitude
+     * @return Pop
      */
     public function setLongitude($longitude)
     {
         $this->longitude = $longitude;
-
         return $this;
     }
 
     /**
      * Get paymentAvailable
      *
-     * @return mixed
+     * @return bool
      */
     public function getPaymentAvailable()
     {
@@ -351,20 +328,19 @@ class Entry
     /**
      * Set paymentAvailable
      *
-     * @param mixed $paymentAvailable
-     * @return Model
+     * @param bool $paymentAvailable
+     * @return Pop
      */
     public function setPaymentAvailable($paymentAvailable)
     {
         $this->paymentAvailable = $paymentAvailable;
-
         return $this;
     }
 
     /**
      * Get displayName
      *
-     * @return mixed
+     * @return string
      */
     public function getDisplayName()
     {
@@ -374,20 +350,19 @@ class Entry
     /**
      * Set displayName
      *
-     * @param mixed $displayName
-     * @return Model
+     * @param string $displayName
+     * @return Pop
      */
     public function setDisplayName($displayName)
     {
         $this->displayName = $displayName;
-
         return $this;
     }
 
     /**
      * Get description
      *
-     * @return mixed
+     * @return string
      */
     public function getDescription()
     {
@@ -397,20 +372,19 @@ class Entry
     /**
      * Set description
      *
-     * @param mixed $description
-     * @return Model
+     * @param string $description
+     * @return Pop
      */
     public function setDescription($description)
     {
         $this->description = $description;
-
         return $this;
     }
 
     /**
      * Get workingHours
      *
-     * @return mixed
+     * @return string
      */
     public function getWorkingHours()
     {
@@ -420,20 +394,19 @@ class Entry
     /**
      * Set workingHours
      *
-     * @param mixed $workingHours
-     * @return Model
+     * @param string $workingHours
+     * @return Pop
      */
     public function setWorkingHours($workingHours)
     {
         $this->workingHours = $workingHours;
-
         return $this;
     }
 
     /**
      * Get photoLink
      *
-     * @return mixed
+     * @return string
      */
     public function getPhotoLink()
     {
@@ -443,20 +416,19 @@ class Entry
     /**
      * Set photoLink
      *
-     * @param mixed $photoLink
-     * @return Model
+     * @param string $photoLink
+     * @return Pop
      */
     public function setPhotoLink($photoLink)
     {
         $this->photoLink = $photoLink;
-
         return $this;
     }
 
     /**
      * Get isPop
      *
-     * @return mixed
+     * @return bool
      */
     public function getIsPop()
     {
@@ -466,20 +438,19 @@ class Entry
     /**
      * Set isPop
      *
-     * @param mixed $isPop
-     * @return Model
+     * @param bool $isPop
+     * @return Pop
      */
     public function setIsPop($isPop)
     {
         $this->isPop = $isPop;
-
         return $this;
     }
 
     /**
      * Get is24h
      *
-     * @return mixed
+     * @return bool
      */
     public function getIs24h()
     {
@@ -489,13 +460,12 @@ class Entry
     /**
      * Set is24h
      *
-     * @param mixed $is24h
-     * @return Model
+     * @param bool $is24h
+     * @return Pop
      */
     public function setIs24h($is24h)
     {
         $this->is24h = $is24h;
-
         return $this;
     }
 }
