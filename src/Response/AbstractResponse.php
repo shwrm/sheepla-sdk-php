@@ -8,7 +8,6 @@ abstract class AbstractResponse
 {
     /**
      * @JMS\AccessType("public_method")
-     * @JMS\Accessor(getter="getErrors", setter="setErrors")
      * @JMS\Type("array<Sheepla\Response\ResponseError>")
      * @JMS\XmlList(entry="error")
      */
@@ -22,11 +21,11 @@ abstract class AbstractResponse
     /**
      * Get errors
      *
-     * @return array
+     * @return \Sheepla\Response\ResponseError[]
      */
     public function getErrors()
     {
-        return $this->errors;
+        return $this->hasErrors() ? $this->errors : null;
     }
 
     /**
@@ -38,7 +37,6 @@ abstract class AbstractResponse
     public function setErrors(array $errors)
     {
         $this->errors = $errors;
-
         return $this;
     }
 
@@ -49,6 +47,6 @@ abstract class AbstractResponse
      */
     public function hasErrors()
     {
-        return (bool)count($this->getErrors());
+        return (bool)count($this->errors);
     }
 }

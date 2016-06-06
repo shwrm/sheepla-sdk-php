@@ -1,15 +1,14 @@
 <?php
 
-namespace Sheepla\Response\Pop;
+namespace Sheepla\Response;
 
 use JMS\Serializer\Annotation as JMS;
 
-class Collection extends \Sheepla\Response\AbstractResponse
+class GetPops extends \Sheepla\Response\AbstractResponse
 {
     /**
      * @JMS\AccessType("public_method")
-     * @JMS\Accessor(getter="getPops", setter="setPops")
-     * @JMS\Type("array<Sheepla\Response\Pop\Entry>")
+     * @JMS\Type("array<Sheepla\Response\Pop\Pop>")
      * @JMS\XmlList(entry="pop")
      */
     private $pops;
@@ -17,7 +16,7 @@ class Collection extends \Sheepla\Response\AbstractResponse
     /**
      * Get pops
      *
-     * @return array
+     * @return \Sheepla\Response\Pop\Pop[]
      */
     public function getPops()
     {
@@ -27,13 +26,12 @@ class Collection extends \Sheepla\Response\AbstractResponse
     /**
      * Set pops
      *
-     * @param mixed $pops
-     * @return Collection
+     * @param array $pops
+     * @return GetPops
      */
     public function setPops(array $pops)
     {
         $this->pops = $pops;
-
         return $this;
     }
 }

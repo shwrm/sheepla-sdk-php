@@ -14,7 +14,7 @@ abstract class AbstractRequest
      * @JMS\Accessor(getter="getAuthentication")
      * @JMS\XmlKeyValuePairs
      */
-    private $authentication = ['apiKey' => null];
+    protected $authentication = ['apiKey' => null];
 
     /**
      * AbstractRequest constructor.
@@ -28,7 +28,7 @@ abstract class AbstractRequest
     /**
      * Get authentication
      *
-     * @return mixed
+     * @return array
      */
     public function getAuthentication()
     {
