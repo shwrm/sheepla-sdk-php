@@ -4,7 +4,7 @@
             <Name>WS-680934-11-21</Name>
             <CarrierCode>680934</CarrierCode>
             <Street>IZBICKA 5</Street>
-            <BuildingNumber></BuildingNumber>
+            <BuildingNumber/>
             <ZipCode/>
             <City>Warszawa</City>
             <Latitude>52.1840</Latitude>
@@ -24,7 +24,7 @@
             <Name>WS-574152-09-15</Name>
             <CarrierCode>574152</CarrierCode>
             <Street>KARCZEWSKA 27B</Street>
-            <BuildingNumber></BuildingNumber>
+            <BuildingNumber/>
             <ZipCode/>
             <City>Otwock</City>
             <Latitude>52.1024</Latitude>
@@ -44,7 +44,7 @@
             <Name>WS-980599-31-03</Name>
             <CarrierCode>980599</CarrierCode>
             <Street>KOMBATANTÓW 79</Street>
-            <BuildingNumber></BuildingNumber>
+            <BuildingNumber/>
             <ZipCode/>
             <City>Sulejówek</City>
             <Latitude>52.2482</Latitude>

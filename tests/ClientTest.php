@@ -10,6 +10,10 @@ use JMS\Serializer\Naming\IdenticalPropertyNamingStrategy;
 use JMS\Serializer\Naming\SerializedNameAnnotationStrategy;
 use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializerBuilder;
+use JMS\Serializer\SerializerInterface;
+use Sheepla\Response\AbstractResponse;
+use Sheepla\Response\CreateShipment;
+use Sheepla\Response\GetPops;
 use Sheepla\Client;
 use Sheepla\Request\AbstractRequest;
 use \Mockery as m;
@@ -142,6 +146,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $getPopsResponse = new \Sheepla\Response\GetPops();
 
         $sheepla->sendRequest($getPopsRequest);
+        /** @var GetPops $response */
         $response = $sheepla->getResponse($getPopsResponse);
 
         $this->assertInstanceOf(get_class($getPopsResponse), $response);
@@ -246,6 +251,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $createShipmentResponse = new \Sheepla\Response\CreateShipment();
 
         $sheepla->sendRequest($createShipmentRequest);
+        /** @var CreateShipment $response */
         $response = $sheepla->getResponse($createShipmentResponse);
 
         $this->assertInstanceOf(get_class($createShipmentResponse), $response);
