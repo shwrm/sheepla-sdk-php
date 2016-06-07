@@ -1,0 +1,7 @@
+<createShipmentResponse xmlns="http://www.sheepla.pl/webapi/1_0">
+    <shipments>
+        <shipment id="testShipmentApi1">
+            <edtn>XFXJZGC38XI9K223</edtn>
+        </shipment>
+    </shipments>
+</createShipmentResponse>

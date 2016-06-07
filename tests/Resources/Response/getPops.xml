@@ -1,0 +1,64 @@
+<getPOPsResponse xmlns="http://www.sheepla.pl/webapi/1_0">
+    <pops>
+        <pop>
+            <Name>WS-680934-11-21</Name>
+            <CarrierCode>680934</CarrierCode>
+            <Street>IZBICKA 5</Street>
+            <BuildingNumber></BuildingNumber>
+            <ZipCode/>
+            <City>Warszawa</City>
+            <Latitude>52.1840</Latitude>
+            <Longitude>21.1911</Longitude>
+            <PaymentAvailable>true</PaymentAvailable>
+            <DisplayName>Kiosk 680934</DisplayName>
+            <Description>Salon zlokalizowany w budynku przy ul. Izbickiej, obok krawca, 30 metrów od skrzyżowania o
+                ruchu okrężnym z ul. Patriotów, obok przystanku autobusowego.
+            </Description>
+            <WorkingHours>Pn-Pt:06:00-19:00, So:07:00-15:00, Nd: nieczynne</WorkingHours>
+            <PhotoLink/>
+            <SchemaLink/>
+            <IsPop>false</IsPop>
+            <Is24h>false</Is24h>
+        </pop>
+        <pop>
+            <Name>WS-574152-09-15</Name>
+            <CarrierCode>574152</CarrierCode>
+            <Street>KARCZEWSKA 27B</Street>
+            <BuildingNumber></BuildingNumber>
+            <ZipCode/>
+            <City>Otwock</City>
+            <Latitude>52.1024</Latitude>
+            <Longitude>21.2634</Longitude>
+            <PaymentAvailable>true</PaymentAvailable>
+            <DisplayName>Kiosk 574152</DisplayName>
+            <Description>Kiosk z okienkiem, zlokalizowany przy skrzyżowaniu o ruchu okrężnym ul. Karczewskiej i ul.
+                Hożej, po drugiej stronie Karczewskiej.
+            </Description>
+            <WorkingHours>Pn-Pt:06:00-19:00, So:06:00-15:00, Nd: nieczynne</WorkingHours>
+            <PhotoLink/>
+            <SchemaLink/>
+            <IsPop>false</IsPop>
+            <Is24h>false</Is24h>
+        </pop>
+        <pop>
+            <Name>WS-980599-31-03</Name>
+            <CarrierCode>980599</CarrierCode>
+            <Street>KOMBATANTÓW 79</Street>
+            <BuildingNumber></BuildingNumber>
+            <ZipCode/>
+            <City>Sulejówek</City>
+            <Latitude>52.2482</Latitude>
+            <Longitude>21.2766</Longitude>
+            <PaymentAvailable>true</PaymentAvailable>
+            <DisplayName>Kiosk 980599</DisplayName>
+            <Description>Kiosk z okienkiem znajdujący się przy ul. Kombatantów 76, przy wejściu do przejścia pod torami
+                po lewej stronie, ok 30 metrów od Delikatesów.
+            </Description>
+            <WorkingHours>Pn-Pt:05:30-18:00, So:05:30-15:00, Nd: nieczynne</WorkingHours>
+            <PhotoLink/>
+            <SchemaLink/>
+            <IsPop>false</IsPop>
+            <Is24h>false</Is24h>
+        </pop>
+    </pops>
+</getPOPsResponse>

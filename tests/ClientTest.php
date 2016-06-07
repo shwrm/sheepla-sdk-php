@@ -5,13 +5,32 @@ namespace Sheepla\Test;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
-use JMS\Serializer\SerializerInterface;
+use GuzzleHttp\Middleware;
+use JMS\Serializer\Naming\IdenticalPropertyNamingStrategy;
+use JMS\Serializer\Naming\SerializedNameAnnotationStrategy;
+use JMS\Serializer\Serializer;
+use JMS\Serializer\SerializerBuilder;
 use Sheepla\Client;
 use Sheepla\Request\AbstractRequest;
 use \Mockery as m;
 
 class ClientTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @var Serializer
+     */
+    public static $serializer;
+
+    public static function setUpBeforeClass()
+    {
+        // register jms annotation namespace
+        \Doctrine\Common\Annotations\AnnotationRegistry::registerAutoloadNamespace('JMS\Serializer\Annotation', 'vendor/jms/serializer/src');
+
+        self::$serializer = SerializerBuilder::create()
+            ->setPropertyNamingStrategy(new SerializedNameAnnotationStrategy(new IdenticalPropertyNamingStrategy()))
+            ->build();
+    }
+
     public function testSendRequest()
     {
         $mock = new MockHandler([
@@ -31,7 +50,26 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $res = $sheepla->sendRequest($request);
 
         $this->assertEquals(200, $res->getStatusCode());
-        $this->assertEquals('<bar></bar>', (string) $res->getBody());
+        $this->assertEquals('<bar></bar>', (string)$sheepla->getBody());
+    }
+
+    public function testGetResponse()
+    {
+        $mock = new MockHandler([
+            new Response(200, [], '<bar></bar>'),
+        ]);
+        $handler = HandlerStack::create($mock);
+        $client = new \GuzzleHttp\Client(['handler' => $handler]);
+
+        /** @var AbstractResponse|m\Mock $response */
+        $response = m::mock('Sheepla\Response\AbstractResponse');
+        /** @var SerializerInterface|m\Mock $serializer */
+        $serializer = m::mock('JMS\Serializer\SerializerInterface');
+        $serializer->shouldReceive('deserialize')->andReturn($response);
+        $sheepla = new Client($client, $serializer);
+        $sheeplaResponse = $sheepla->getResponse($response);
+
+        $this->assertInstanceOf(get_class($response), $sheeplaResponse);
     }
 
     public function testCarrierConstants()
@@ -60,5 +98,54 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals('json', $sheepla->getConstant('FORMAT_JSON'));
         $this->assertEquals('xml', $sheepla->getConstant('FORMAT_XML'));
+    }
+
+    public function testGetPopsRequest()
+    {
+        $mock = new MockHandler([
+            new Response(200, [], '<bar></bar>'),
+        ]);
+
+        $container = [];
+        $history = Middleware::history($container);
+        $handler = HandlerStack::create($mock);
+        $handler->push($history);
+        $client = new \GuzzleHttp\Client(['handler' => $handler]);
+
+        $sheepla = new Client($client, self::$serializer);
+        $getPopsRequest = new \Sheepla\Request\GetPops('API_KEY');
+        $getPopsRequest
+            ->setCarrierId(31)
+            ->setCarrierAccountId(1)
+            ->setTemplateId(1);
+
+        $sheepla->sendRequest($getPopsRequest);
+
+        /** @var \GuzzleHttp\Psr7\Request $request */
+        $request = current($container)['request'];
+
+        $this->assertXmlStringEqualsXmlFile('tests/Resources/Request/getPops.xml', $request->getBody());
+    }
+
+    public function testGetPopsResponse()
+    {
+        $mock = new MockHandler([
+            new Response(200, [], file_get_contents('tests/Resources/Response/getPops.xml')),
+        ]);
+
+        $handler = HandlerStack::create($mock);
+        $client = new \GuzzleHttp\Client(['handler' => $handler]);
+
+        $sheepla = new Client($client, self::$serializer);
+
+        $getPopsRequest = new \Sheepla\Request\GetPops('API_KEY');
+        $getPopsResponse = new \Sheepla\Response\GetPops();
+
+        $sheepla->sendRequest($getPopsRequest);
+        $response = $sheepla->getResponse($getPopsResponse);
+
+        $this->assertInstanceOf(get_class($getPopsResponse), $response);
+        $this->assertNull($response->getErrors());
+        $this->assertCount(3, $response->getPops());
     }
 }
