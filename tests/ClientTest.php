@@ -124,7 +124,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         /** @var \GuzzleHttp\Psr7\Request $request */
         $request = current($container)['request'];
 
-        $this->assertXmlStringEqualsXmlFile('tests/Resources/Request/getPops.xml', $request->getBody());
+        $this->assertXmlStringEqualsXmlFile('tests/Resources/Request/getPops.xml', (string)$request->getBody());
     }
 
     public function testGetPopsResponse()
