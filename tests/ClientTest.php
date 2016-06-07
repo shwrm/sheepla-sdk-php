@@ -148,4 +148,108 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($response->getErrors());
         $this->assertCount(3, $response->getPops());
     }
+
+    public function testCreateShipmentRequest()
+    {
+        $mock = new MockHandler([
+            new Response(200, [], '<bar></bar>'),
+        ]);
+
+        $container = [];
+        $history = Middleware::history($container);
+        $handler = HandlerStack::create($mock);
+        $handler->push($history);
+        $client = new \GuzzleHttp\Client(['handler' => $handler]);
+
+        $sheepla = new Client($client, self::$serializer);
+        $senderContact = new \Sheepla\Request\Shipment\Contact();
+        $senderContact
+            ->setFirstName('Marian')
+            ->setLastName('Ziółko')
+            ->setPhone('601000000')
+            ->setEmail('Marian.Ziolko@sheepla.com');
+
+        $sender = new \Sheepla\Request\Shipment\Sender();
+        $sender
+            ->setIsCompany(false)
+            ->setCompanyName('senderCompany')
+            ->setFirstName('Marian')
+            ->setLastName('Ziółko')
+            ->setStreet('Żelazna')
+            ->setHomeNumber('67/77')
+            ->setZipCode('00-871')
+            ->setCity('Warszawa')
+            ->setCountryCode('PL')
+            ->setContact($senderContact);
+
+        $recipientContact = new \Sheepla\Request\Shipment\Contact();
+        $recipientContact
+            ->setFirstName('Marzena')
+            ->setLastName('Korzeniowska')
+            ->setPhone('602000000')
+            ->setEmail('Marzena.Korzeniowska@sheepla.com');
+
+        $recipient = new \Sheepla\Request\Shipment\Recipient();
+        $recipient
+            ->setIsCompany(false)
+            ->setCompanyName('recipientCompany')
+            ->setFirstName('Marzena')
+            ->setLastName('Korzeniowska')
+            ->setStreet('1 Maja')
+            ->setHomeNumber('78')
+            ->setZipCode('02-495')
+            ->setCity('Warszawa')
+            ->setCountryCode('PL')
+            ->setContact($recipientContact);
+
+        $service = new \Sheepla\Request\Shipment\Service\Service();
+        $service->setCode(1);
+        $param = new \Sheepla\Request\Shipment\Service\Param();
+        $param
+            ->setCode('RuchDestinationPOP')
+            ->setValue('WS-703256-31-09');
+        $service->addParam($param);
+
+        $shipment = new \Sheepla\Request\Shipment\Shipment();
+        $shipment
+            ->setId('testShipmentApi1')
+            ->setSender($sender)
+            ->setRecipient($recipient)
+            ->setCarrierAccount('RUCH')
+            ->setService($service)
+            ->setDescription('Test shipment description')
+            ->setConfirmAfterCreate(true);
+
+        $createShipmentRequest = new \Sheepla\Request\CreateShipment('API_KEY');
+        $createShipmentRequest->addShipment($shipment);
+
+        $sheepla->sendRequest($createShipmentRequest);
+
+        /** @var \GuzzleHttp\Psr7\Request $request */
+        $request = current($container)['request'];
+
+        $this->assertXmlStringEqualsXmlFile('tests/Resources/Request/createShipment.xml', (string)$request->getBody());
+    }
+
+    public function testCreateShipmentResponse()
+    {
+        $mock = new MockHandler([
+            new Response(200, [], file_get_contents('tests/Resources/Response/createShipment.xml')),
+        ]);
+
+        $handler = HandlerStack::create($mock);
+        $client = new \GuzzleHttp\Client(['handler' => $handler]);
+
+        $sheepla = new Client($client, self::$serializer);
+
+        $createShipmentRequest = new \Sheepla\Request\CreateShipment('API_KEY');
+        $createShipmentResponse = new \Sheepla\Response\CreateShipment();
+
+        $sheepla->sendRequest($createShipmentRequest);
+        $response = $sheepla->getResponse($createShipmentResponse);
+
+        $this->assertInstanceOf(get_class($createShipmentResponse), $response);
+        $this->assertNull($response->getErrors());
+        $this->assertCount(1, $response->getShipments());
+    }
 }
