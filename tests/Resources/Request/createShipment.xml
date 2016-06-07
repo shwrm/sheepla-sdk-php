@@ -1,0 +1,52 @@
+<createShipmentRequest xmlns="http://www.sheepla.pl/webapi/1_0">
+    <authentication>
+        <apiKey>API_KEY</apiKey>
+    </authentication>
+    <shipments>
+        <shipment>
+            <id>testShipmentApi1</id>
+            <sender>
+                <isCompany>false</isCompany>
+                <companyName>senderCompany</companyName>
+                <firstName>Marian</firstName>
+                <lastName>Ziółko</lastName>
+                <street>Żelazna</street>
+                <homeNumber>67/77</homeNumber>
+                <zipCode>00-871</zipCode>
+                <city>Warszawa</city>
+                <countryCode>PL</countryCode>
+                <contact>
+                    <firstName>Marian</firstName>
+                    <lastName>Ziółko</lastName>
+                    <phone>601000000</phone>
+                    <email>Marian.Ziolko@sheepla.com</email>
+                </contact>
+            </sender>
+            <recipient>
+                <isCompany>false</isCompany>
+                <companyName>recipientCompany</companyName>
+                <firstName>Marzena</firstName>
+                <lastName>Korzeniowska</lastName>
+                <street>1 Maja</street>
+                <homeNumber>78</homeNumber>
+                <zipCode>02-495</zipCode>
+                <city>Warszawa</city>
+                <countryCode>PL</countryCode>
+                <contact>
+                    <firstName>Marzena</firstName>
+                    <lastName>Korzeniowska</lastName>
+                    <phone>602000000</phone>
+                    <email>Marzena.Korzeniowska@sheepla.com</email>
+                </contact>
+            </recipient>
+            <carrierAccount>RUCH</carrierAccount>
+            <service code="1">
+                <params>
+                    <param code="RuchDestinationPOP" value="WS-703256-31-09"/>
+                </params>
+            </service>
+            <description>Test shipment description</description>
+            <confirmAfterCreate>true</confirmAfterCreate>
+        </shipment>
+    </shipments>
+</createShipmentRequest>

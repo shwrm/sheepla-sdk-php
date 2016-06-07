@@ -1,0 +1,8 @@
+<getPOPsRequest xmlns="http://www.sheepla.pl/webapi/1_0">
+    <authentication>
+        <apiKey>API_KEY</apiKey>
+    </authentication>
+    <carrierId>31</carrierId>
+    <carrierAccountId>1</carrierAccountId>
+    <templateId>1</templateId>
+</getPOPsRequest>
