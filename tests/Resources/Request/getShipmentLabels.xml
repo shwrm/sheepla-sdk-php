@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<getLabelRequest xmlns="http://www.sheepla.pl/webapi/1_0">
+  <authentication>
+    <apiKey>xxx</apiKey>
+  </authentication>
+  <shipments>
+    <shipmentEDTN>222222222222</shipmentEDTN>
+    <shipmentEDTN>7rdzcxkvjxck</shipmentEDTN>
+  </shipments>
+</getLabelRequest>

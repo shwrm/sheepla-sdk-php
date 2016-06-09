@@ -11,6 +11,8 @@ use JMS\Serializer\Naming\SerializedNameAnnotationStrategy;
 use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializerBuilder;
 use JMS\Serializer\SerializerInterface;
+use Sheepla\Request\GetShipmentLabels;
+use Sheepla\Response\GetShipmentLabels as GetShipmentLabelsResponse;
 use Sheepla\Response\AbstractResponse;
 use Sheepla\Response\CreateShipment;
 use Sheepla\Response\GetPops;
@@ -257,5 +259,29 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf(get_class($createShipmentResponse), $response);
         $this->assertNull($response->getErrors());
         $this->assertCount(1, $response->getShipments());
+    }
+
+    public function testGetShipmentLabelsResponse()
+    {
+        $mock = new MockHandler([
+            new Response(200, [], file_get_contents('tests/Resources/Response/getShipmentLabels.xml')),
+        ]);
+
+        $handler = HandlerStack::create($mock);
+        $client = new \GuzzleHttp\Client(['handler' => $handler]);
+
+        $sheepla = new Client($client, self::$serializer);
+
+        $createGetLabelsRequest = new GetShipmentLabels('xxx');
+        $createGetLabelsResponse = new GetShipmentLabelsResponse();
+
+        $sheepla->sendRequest($createGetLabelsRequest);
+
+        /** @var GetShipmentLabelsResponse $response */
+        $response = $sheepla->getResponse($createGetLabelsResponse);
+
+        $this->assertInstanceOf(get_class($createGetLabelsResponse), $response);
+        $this->assertNull($response->getErrors());
+        $this->assertCount(2, $response->getShipments());
     }
 }
