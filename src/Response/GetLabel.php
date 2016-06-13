@@ -3,16 +3,16 @@
 namespace Sheepla\Response;
 
 use JMS\Serializer\Annotation as JMS;
-use Sheepla\Response\AbstractResponse;
+use Sheepla\Response\Shipment\ShipmentByEDTN;
 
 /**
  * @JMS\XmlRoot("getLabelResponse");
  */
-class GetShipmentLabels extends AbstractResponse
+class GetLabel extends AbstractResponse
 {
     /**
+     * @var ShipmentByEDTN[]
      * @JMS\AccessType("public_method")
-     * @JMS\Accessor(setter = "addShipment")
      * @JMS\Type("array<Sheepla\Response\Shipment\ShipmentByEDTN>")
      * @JMS\XmlList(entry="shipment")
      */

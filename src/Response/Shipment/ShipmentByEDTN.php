@@ -23,6 +23,8 @@ class ShipmentByEDTN
     private $shipmentLabelLink;
 
     /**
+     * Get EDTN
+     *
      * @return string
      */
     public function getEdtn()
@@ -31,6 +33,8 @@ class ShipmentByEDTN
     }
 
     /**
+     * Set EDTN
+     *
      * @param mixed $edtn
      */
     public function setEdtn($edtn)
@@ -39,6 +43,8 @@ class ShipmentByEDTN
     }
 
     /**
+     * Get shipment label link
+     *
      * @return string
      */
     public function getShipmentLabelLink()
@@ -47,6 +53,8 @@ class ShipmentByEDTN
     }
 
     /**
+     * Set shipment label link
+     *
      * @param string $shipmentLabelLink
      * @return $this
      */

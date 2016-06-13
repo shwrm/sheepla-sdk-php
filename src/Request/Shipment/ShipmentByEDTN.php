@@ -4,12 +4,11 @@ namespace Sheepla\Request\Shipment;
 
 use JMS\Serializer\Annotation as JMS;
 
-/**
- * @JMS\XmlRoot("shipments")
- */
 class ShipmentByEDTN
 {
     /**
+     * EDTN
+     *
      * @var string
      * @JMS\XmlValue(cdata=false)
      * @JMS\AccessType("public_method")
@@ -17,6 +16,8 @@ class ShipmentByEDTN
     private $edtn;
 
     /**
+     * Get EDTN
+     *
      * @return string
      */
     public function getEdtn()
@@ -25,6 +26,8 @@ class ShipmentByEDTN
     }
 
     /**
+     * Set EDTN
+     *
      * @param mixed $edtn
      * @return $this
      */

@@ -1,6 +1,6 @@
 <?php
 
-namespace Sheepla\Test;
+namespace Sheepla\Test\Request;
 
 use \Mockery as m;
 use Sheepla\Request\GetShipmentDetailsShort;
