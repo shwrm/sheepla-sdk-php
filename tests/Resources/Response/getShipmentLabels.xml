@@ -1,0 +1,10 @@
+<getLabelResponse xmlns="http://www.sheepla.pl/webapi/1_0">
+    <shipments>
+        <shipment edtn="XFXJZGC33VWDB222">
+            <shipmentLabelLink>https://api.sheepla.com/GetLabel?key=e0ba0570a8844062b9de1d5a11653cf4</shipmentLabelLink>
+        </shipment>
+        <shipment edtn="sdfsdfkdfljk">
+            <shipmentLabelLink>https://api.sheepla.com/GetLabel?key=82347698ry9809834708</shipmentLabelLink>
+        </shipment>
+    </shipments>
+</getLabelResponse>
