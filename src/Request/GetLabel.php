@@ -3,7 +3,6 @@
 namespace Sheepla\Request;
 
 use JMS\Serializer\Annotation as JMS;
-use Sheepla\Request\Shipment\ShipmentByEDTN;
 
 /**
  * @JMS\XmlRoot("getLabelRequest");
