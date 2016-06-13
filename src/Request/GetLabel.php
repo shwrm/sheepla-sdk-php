@@ -3,15 +3,15 @@
 namespace Sheepla\Request;
 
 use JMS\Serializer\Annotation as JMS;
-use Sheepla\Request\AbstractRequest;
 use Sheepla\Request\Shipment\ShipmentByEDTN;
 
 /**
  * @JMS\XmlRoot("getLabelRequest");
  */
-class GetShipmentLabels extends AbstractRequest
+class GetLabel extends AbstractRequest
 {
     /**
+     * @var ShipmentByEDTN[]
      * @JMS\AccessType("public_method")
      * @JMS\Accessor(setter = "addShipment")
      * @JMS\Type("array<Sheepla\Request\Shipment\ShipmentByEDTN>")
@@ -19,11 +19,25 @@ class GetShipmentLabels extends AbstractRequest
      */
     private $shipments = [];
 
+    /**
+     * Add shipment
+     *
+     * @param ShipmentByEDTN $shipmentByEDTN
+     * @return $this
+     */
     public function addShipment(ShipmentByEDTN $shipmentByEDTN)
     {
         $this->shipments[] = $shipmentByEDTN;
+
+        return $this;
     }
 
+    /**
+     * Remove shipment
+     *
+     * @param ShipmentByEDTN $shipmentByEDTN
+     * @return $this
+     */
     public function removeShipment(ShipmentByEDTN $shipmentByEDTN)
     {
         $key = array_search($shipmentByEDTN, $this->shipments, true);
@@ -31,15 +45,27 @@ class GetShipmentLabels extends AbstractRequest
         if ($key !== false) {
             unset($this->shipments[$key]);
         }
+
+        return $this;
     }
 
+    /**
+     * Get shipments
+     *
+     * @return Shipment\ShipmentByEDTN[]
+     */
     public function getShipments()
     {
         return $this->shipments;
     }
 
+    /**
+     * Get request method
+     * 
+     * @return string
+     */
     public function getRequestMethod()
     {
-        return 'GetLabel';
+        return 'getLabel';
     }
 }

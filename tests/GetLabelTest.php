@@ -8,16 +8,16 @@ use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7\Response;
 use Mockery as m;
 use Sheepla\Client;
-use Sheepla\Request\GetShipmentLabels;
+use Sheepla\Request\GetLabel;
 use Sheepla\Request\Shipment\ShipmentByEDTN;
-use Sheepla\Response\GetShipmentLabels as GetShipmentLabelsResponse;
+use Sheepla\Response\GetLabel as GetShipmentLabelsResponse;
 
-class ShipmentByEDTNTest extends AbstractTest {
+class GetLabelTest extends AbstractTest {
 
     private static $getShipmentsClassName;
 
     /**
-     * @var GetShipmentLabels
+     * @var GetLabel
      */
     public static $getShipmentsByEDTNs;
 
@@ -25,7 +25,7 @@ class ShipmentByEDTNTest extends AbstractTest {
     {
         parent::setUpBeforeClass();
         self::$getShipmentsClassName = ShipmentByEDTN::class;
-        self::$getShipmentsByEDTNs = new GetShipmentLabels('api-key');
+        self::$getShipmentsByEDTNs = new GetLabel('api-key');
     }
 
     public function testAuthentication()
@@ -36,7 +36,7 @@ class ShipmentByEDTNTest extends AbstractTest {
 
     public function testRequestMethod()
     {
-        $this->assertEquals('GetLabel', self::$getShipmentsByEDTNs->getRequestMethod());
+        $this->assertEquals('getLabel', self::$getShipmentsByEDTNs->getRequestMethod());
     }
 
     public function testAddShipment()
@@ -74,7 +74,7 @@ class ShipmentByEDTNTest extends AbstractTest {
 
         $sheepla = new Client($client, self::$serializer);
 
-        $getShipmentLabelsRequest = new GetShipmentLabels('API_KEY');
+        $getShipmentLabelsRequest = new GetLabel('API_KEY');
 
         foreach (['222222222222', '7rdzcxkvjxck'] as $edtn) {
             $shipmentByEDTN = new ShipmentByEDTN();
@@ -100,7 +100,7 @@ class ShipmentByEDTNTest extends AbstractTest {
 
         $sheepla = new Client($client, self::$serializer);
 
-        $getShipmentLabelsRequest = new GetShipmentLabels('API_KEY');
+        $getShipmentLabelsRequest = new GetLabel('API_KEY');
         $getShipmentLabelsResponse = new GetShipmentLabelsResponse();
 
         $sheepla->sendRequest($getShipmentLabelsRequest);
