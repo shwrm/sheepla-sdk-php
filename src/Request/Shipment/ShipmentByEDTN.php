@@ -26,9 +26,12 @@ class ShipmentByEDTN
 
     /**
      * @param mixed $edtn
+     * @return $this
      */
     public function setEdtn($edtn)
     {
         $this->edtn = $edtn;
+
+        return $this;
     }
 }

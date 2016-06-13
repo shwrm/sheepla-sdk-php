@@ -12,6 +12,7 @@ use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializerBuilder;
 use JMS\Serializer\SerializerInterface;
 use Sheepla\Request\GetShipmentLabels;
+use Sheepla\Request\Shipment\ShipmentByEDTN;
 use Sheepla\Response\GetShipmentLabels as GetShipmentLabelsResponse;
 use Sheepla\Response\AbstractResponse;
 use Sheepla\Response\CreateShipment;
@@ -261,6 +262,50 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(1, $response->getShipments());
     }
 
+    public function edtnDataProvider()
+    {
+        return [
+            [
+                ['222222222222', '7rdzcxkvjxck']
+            ]
+        ];
+    }
+
+    /**
+     * @dataProvider edtnDataProvider
+     */
+    public function testGetShipmentLabelsRequest($edtnList)
+    {
+        $mock = new MockHandler([
+            new Response(200, [], '<bar></bar>'),
+        ]);
+
+        $container = [];
+        $history = Middleware::history($container);
+
+        $stack = HandlerStack::create($mock);
+        $stack->push($history);
+
+        $client = new \GuzzleHttp\Client(['handler' => $stack]);
+
+        $sheepla = new Client($client, self::$serializer);
+
+        $getShipmentLabelsRequest = new GetShipmentLabels('API_KEY');
+
+        foreach ($edtnList as $edtn) {
+            $shipmentByEDTN = new ShipmentByEDTN();
+            $shipmentByEDTN->setEdtn($edtn);
+            $getShipmentLabelsRequest->addShipment($shipmentByEDTN);
+        }
+
+        $sheepla->sendRequest($getShipmentLabelsRequest);
+
+        /** @var \GuzzleHttp\Psr7\Request $request */
+        $request = current($container)['request'];
+
+        $this->assertXmlStringEqualsXmlFile('tests/Resources/Request/getShipmentLabels.xml', (string)$request->getBody());
+    }
+
     public function testGetShipmentLabelsResponse()
     {
         $mock = new MockHandler([
@@ -272,15 +317,15 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
         $sheepla = new Client($client, self::$serializer);
 
-        $createGetLabelsRequest = new GetShipmentLabels('xxx');
-        $createGetLabelsResponse = new GetShipmentLabelsResponse();
+        $getShipmentLabelsRequest = new GetShipmentLabels('API_KEY');
+        $getShipmentLabelsResponse = new GetShipmentLabelsResponse();
 
-        $sheepla->sendRequest($createGetLabelsRequest);
+        $sheepla->sendRequest($getShipmentLabelsRequest);
 
         /** @var GetShipmentLabelsResponse $response */
-        $response = $sheepla->getResponse($createGetLabelsResponse);
+        $response = $sheepla->getResponse($getShipmentLabelsResponse);
 
-        $this->assertInstanceOf(get_class($createGetLabelsResponse), $response);
+        $this->assertInstanceOf(get_class($getShipmentLabelsResponse), $response);
         $this->assertNull($response->getErrors());
         $this->assertCount(2, $response->getShipments());
     }
