@@ -1,0 +1,43 @@
+<getShipmentDetailsShortResponse xmlns="http://www.sheepla.pl/webapi/1_0">
+  <shipments>
+    <shipment edtn="XERGDFGFFDG34" ctn="2100009809834" externalOrderId="">
+      <ctn>2100009809834</ctn>
+      <edtn>XERGDFGFFDG34</edtn>
+      <externalOrderId></externalOrderId>
+      <currentStatusId>4</currentStatusId>
+      <currentSubStatusId />
+      <currentStatusName>Oczekuje na raport zbiorczy</currentStatusName>
+      <currentSubStatusName></currentSubStatusName>
+      <isDeleted>false</isDeleted>
+      <createdDate>2016-06-10 12:13:13</createdDate>
+      <lastModificationDate>2016-06-10 12:13:18</lastModificationDate>
+      <isLabelCreated>True</isLabelCreated>
+      <carrierAccount>RUCH</carrierAccount>
+      <carrier>Ruch</carrier>
+      <weight>1.000</weight>
+      <description>Test shipment description</description>
+      <isManifestCreated>False</isManifestCreated>
+      <manifestId />
+    </shipment>
+    <shipment edtn="XERGDFGFFD987" ctn="2100009807654" externalOrderId="">
+      <ctn>2100009807654</ctn>
+      <edtn>XERGDFGFFD987</edtn>
+      <externalOrderId></externalOrderId>
+      <currentStatusId>4</currentStatusId>
+      <currentSubStatusId />
+      <currentStatusName>Oczekuje na raport zbiorczy</currentStatusName>
+      <currentSubStatusName></currentSubStatusName>
+      <isDeleted>false</isDeleted>
+      <createdDate>2016-06-10 12:13:14</createdDate>
+      <lastModificationDate>2016-06-10 12:13:19</lastModificationDate>
+      <isLabelCreated>True</isLabelCreated>
+      <carrierAccount>RUCH</carrierAccount>
+      <carrier>Ruch</carrier>
+      <weight>2.000</weight>
+      <description>Test shipment description</description>
+      <isManifestCreated>False</isManifestCreated>
+      <codValue>1.234</codValue>
+      <manifestId />
+    </shipment>
+  </shipments>
+</getShipmentDetailsShortResponse>

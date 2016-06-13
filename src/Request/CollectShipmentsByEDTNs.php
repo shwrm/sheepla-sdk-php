@@ -2,13 +2,10 @@
 
 namespace Sheepla\Request;
 
-use JMS\Serializer\Annotation as JMS;
 use Sheepla\Request\Shipment\ShipmentByEDTN;
+use JMS\Serializer\Annotation as JMS;
 
-/**
- * @JMS\XmlRoot("getLabelRequest");
- */
-class GetShipmentLabels extends AbstractRequest
+trait CollectShipmentsByEDTNs
 {
     /**
      * @JMS\AccessType("public_method")
@@ -35,10 +32,5 @@ class GetShipmentLabels extends AbstractRequest
     public function getShipments()
     {
         return $this->shipments;
-    }
-
-    public function getRequestMethod()
-    {
-        return 'GetLabel';
     }
 }
