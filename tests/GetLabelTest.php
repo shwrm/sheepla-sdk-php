@@ -12,8 +12,8 @@ use Sheepla\Request\GetLabel;
 use Sheepla\Request\Shipment\ShipmentByEDTN;
 use Sheepla\Response\GetLabel as GetShipmentLabelsResponse;
 
-class GetLabelTest extends AbstractTest {
-
+class GetLabelTest extends AbstractTest
+{
     private static $getShipmentsClassName;
 
     /**
@@ -59,7 +59,8 @@ class GetLabelTest extends AbstractTest {
         $this->assertCount(1, self::$getShipmentsByEDTNs->getShipments());
     }
 
-    public function testGetShipmentLabelsRequest() {
+    public function testGetShipmentLabelsRequest()
+    {
         $mock = new MockHandler([
             new Response(200, [], '<bar></bar>'),
         ]);
@@ -87,10 +88,11 @@ class GetLabelTest extends AbstractTest {
         /** @var \GuzzleHttp\Psr7\Request $request */
         $request = current($container)['request'];
 
-        $this->assertXmlStringEqualsXmlFile('tests/Resources/Request/getShipmentLabels.xml', (string)$request->getBody());
+        $this->assertXmlStringEqualsXmlFile('tests/Resources/Request/getShipmentLabels.xml', (string) $request->getBody());
     }
 
-    public function testGetShipmentLabelsResponse() {
+    public function testGetShipmentLabelsResponse()
+    {
         $mock = new MockHandler([
             new Response(200, [], file_get_contents('tests/Resources/Response/getShipmentLabels.xml')),
         ]);

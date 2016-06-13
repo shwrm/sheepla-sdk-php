@@ -2,7 +2,7 @@
 
 namespace Sheepla\Test\Request;
 
-use \Mockery as m;
+use Mockery as m;
 use Sheepla\Request\GetShipmentDetailsShort;
 use Sheepla\Request\Shipment\ShipmentByEDTN;
 

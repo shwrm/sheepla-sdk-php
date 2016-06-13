@@ -10,7 +10,6 @@ use Sheepla\Client;
 use Sheepla\Request\GetShipmentDetailsShort as GetShipmentDetailsShortRequest;
 use Sheepla\Response\GetShipmentDetailsShort as GetShipmentDetailsShortResponse;
 use Sheepla\Request\Shipment\ShipmentByEDTN;
-use Mockery as m;
 
 class GetShipmentDetailsShortTest extends AbstractTest
 {
@@ -45,7 +44,7 @@ class GetShipmentDetailsShortTest extends AbstractTest
         /** @var \GuzzleHttp\Psr7\Request $request */
         $request = current($container)['request'];
 
-        $this->assertXmlStringEqualsXmlFile('tests/Resources/Request/getShipmentDetailsShort.xml', (string)$request->getBody());
+        $this->assertXmlStringEqualsXmlFile('tests/Resources/Request/getShipmentDetailsShort.xml', (string) $request->getBody());
     }
 
     public function testGetShipmentDetailsShortResponse()

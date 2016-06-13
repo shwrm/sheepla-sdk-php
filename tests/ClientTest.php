@@ -13,7 +13,6 @@ use Sheepla\Response\AbstractResponse;
 
 class ClientTest extends AbstractTest
 {
-
     public function testSendRequest()
     {
         $mock = new MockHandler([
@@ -33,7 +32,7 @@ class ClientTest extends AbstractTest
         $res = $sheepla->sendRequest($request);
 
         $this->assertEquals(200, $res->getStatusCode());
-        $this->assertEquals('<bar></bar>', (string)$sheepla->getBody());
+        $this->assertEquals('<bar></bar>', (string) $sheepla->getBody());
     }
 
     public function testGetResponse()
@@ -82,5 +81,4 @@ class ClientTest extends AbstractTest
         $this->assertEquals('json', $sheepla->getConstant('FORMAT_JSON'));
         $this->assertEquals('xml', $sheepla->getConstant('FORMAT_XML'));
     }
-
 }
