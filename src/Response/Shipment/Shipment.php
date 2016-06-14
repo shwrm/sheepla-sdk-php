@@ -3,8 +3,9 @@
 namespace Sheepla\Response\Shipment;
 
 use JMS\Serializer\Annotation as JMS;
+use Sheepla\Response\AbstractResponse;
 
-class Shipment
+class Shipment extends AbstractResponse
 {
     /**
      * @JMS\AccessType("public_method")

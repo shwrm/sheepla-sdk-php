@@ -1,0 +1,9 @@
+<createShipmentResponse xmlns="http://www.sheepla.pl/webapi/1_0">
+  <shipments>
+    <shipment id="1465391443">
+      <errors>
+        <error code="103">SenderDataError</error>
+      </errors>
+    </shipment>
+  </shipments>
+</createShipmentResponse>
