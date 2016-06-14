@@ -142,7 +142,7 @@ class CreateShipmentTest extends AbstractTest
         /** @var \GuzzleHttp\Psr7\Request $request */
         $request = current($container)['request'];
 
-        $this->assertXmlStringEqualsXmlFile('tests/Resources/Request/createShipment.xml', (string)$request->getBody());
+        $this->assertXmlStringEqualsXmlFile('tests/Resources/Request/createShipment.xml', (string) $request->getBody());
     }
 
     public function testCreateShipmentResponse()
@@ -167,5 +167,4 @@ class CreateShipmentTest extends AbstractTest
         $this->assertNull($response->getErrors());
         $this->assertCount(1, $response->getShipments());
     }
-
 }

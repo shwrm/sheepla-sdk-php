@@ -6,7 +6,6 @@ use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7\Response;
-use Mockery as m;
 use Sheepla\Client;
 use Sheepla\Request\GetPops as RequestGetPops;
 use Sheepla\Response\GetPops as ResponseGetPops;
@@ -59,7 +58,7 @@ class GetPopsTest extends AbstractTest
         /** @var \GuzzleHttp\Psr7\Request $request */
         $request = current($container)['request'];
 
-        $this->assertXmlStringEqualsXmlFile('tests/Resources/Request/getPops.xml', (string)$request->getBody());
+        $this->assertXmlStringEqualsXmlFile('tests/Resources/Request/getPops.xml', (string) $request->getBody());
     }
 
     public function testGetPopsResponse()
@@ -84,5 +83,4 @@ class GetPopsTest extends AbstractTest
         $this->assertNull($response->getErrors());
         $this->assertCount(3, $response->getPops());
     }
-
 }

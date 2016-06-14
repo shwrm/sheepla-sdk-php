@@ -2,18 +2,18 @@
 
 namespace Sheepla\Response;
 
+use Sheepla\Response\Shipment\ShipmentDetailsShort;
 use JMS\Serializer\Annotation as JMS;
-use Sheepla\Response\Shipment\ShipmentByEDTN;
 
 /**
- * @JMS\XmlRoot("getLabelResponse");
+ * @JMS\XmlRoot("getShipmentDetailsShortResponse");
  */
-class GetLabel extends AbstractResponse
+class GetShipmentDetailsShort extends AbstractResponse
 {
     /**
-     * @var ShipmentByEDTN[]
      * @JMS\AccessType("public_method")
-     * @JMS\Type("array<Sheepla\Response\Shipment\ShipmentByEDTN>")
+     * @JMS\Accessor(setter = "addShipment")
+     * @JMS\Type("array<Sheepla\Response\Shipment\ShipmentDetailsShort>")
      * @JMS\XmlList(entry="shipment")
      */
     private $shipments = [];
@@ -21,7 +21,7 @@ class GetLabel extends AbstractResponse
     /**
      * Get shipments
      *
-     * @return \Sheepla\Response\Shipment\ShipmentByEDTN[]
+     * @return ShipmentDetailsShort[]
      */
     public function getShipments()
     {
