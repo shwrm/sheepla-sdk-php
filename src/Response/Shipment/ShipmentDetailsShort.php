@@ -3,8 +3,9 @@
 namespace Sheepla\Response\Shipment;
 
 use JMS\Serializer\Annotation as JMS;
+use Sheepla\Response\AbstractResponse;
 
-class ShipmentDetailsShort
+class ShipmentDetailsShort extends AbstractResponse
 {
     /**
      * @var string

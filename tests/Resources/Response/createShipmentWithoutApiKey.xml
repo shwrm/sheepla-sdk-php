@@ -1,0 +1,6 @@
+<createShipmentResponse xmlns="http://www.sheepla.pl/webapi/1_0">
+  <errors>
+    <error code="2">Incorrect XML format.</error>
+    <error>Very long error message</error>
+  </errors>
+</createShipmentResponse>

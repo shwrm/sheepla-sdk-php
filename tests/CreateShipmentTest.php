@@ -16,6 +16,7 @@ use Sheepla\Request\Shipment\Service\Param;
 use Sheepla\Request\Shipment\Service\Service;
 use Sheepla\Request\Shipment\Shipment;
 use Sheepla\Response\CreateShipment as ResponseCreateShipment;
+use Sheepla\Response\ResponseError;
 
 class CreateShipmentTest extends AbstractTest
 {
@@ -166,5 +167,75 @@ class CreateShipmentTest extends AbstractTest
         $this->assertInstanceOf(get_class($createShipmentResponse), $response);
         $this->assertNull($response->getErrors());
         $this->assertCount(1, $response->getShipments());
+    }
+
+    public function testCreateShipmentWithoutApiKey()
+    {
+        $mock = new MockHandler([
+            new Response(200, [], file_get_contents('tests/Resources/Response/createShipmentWithoutApiKey.xml')),
+        ]);
+
+        $handler = HandlerStack::create($mock);
+        $client = new \GuzzleHttp\Client(['handler' => $handler]);
+
+        $sheepla = new Client($client, self::$serializer);
+
+        $createShipmentRequest = new CreateShipment('API_KEY');
+        $createShipmentResponse = new ResponseCreateShipment();
+
+        $sheepla->sendRequest($createShipmentRequest);
+        /** @var ResponseCreateShipment $response */
+        $response = $sheepla->getResponse($createShipmentResponse);
+
+        $this->assertInstanceOf(get_class($createShipmentResponse), $response);
+        $this->assertTrue($response->hasErrors());
+        $this->assertCount(2, $response->getErrors());
+        $this->assertContainsOnlyInstancesOf(ResponseError::class, $response->getErrors());
+
+        $errors = $response->getErrors();
+
+        $this->assertEquals(2, $errors[0]->getCode());
+        $this->assertEquals('Incorrect XML format.', $errors[0]->getMessage());
+
+        $this->assertNull($errors[1]->getCode());
+        $this->assertEquals(
+            "Very long error message",
+            $errors[1]->getMessage()
+        );
+    }
+
+    public function testCreateShipmentWithWrongSenderData()
+    {
+        $mock = new MockHandler([
+            new Response(200, [], file_get_contents('tests/Resources/Response/createShipmentWithWrongSenderData.xml')),
+        ]);
+
+        $handler = HandlerStack::create($mock);
+        $client = new \GuzzleHttp\Client(['handler' => $handler]);
+
+        $sheepla = new Client($client, self::$serializer);
+
+        $createShipmentRequest = new CreateShipment('API_KEY');
+        $createShipmentResponse = new ResponseCreateShipment();
+
+        $sheepla->sendRequest($createShipmentRequest);
+        /** @var ResponseCreateShipment $response */
+        $response = $sheepla->getResponse($createShipmentResponse);
+
+        $this->assertInstanceOf(get_class($createShipmentResponse), $response);
+
+        // Yes, it still works just that
+        $this->assertNull($response->getErrors());
+
+        $this->assertCount(1, $response->getShipments());
+        $shipment = $response->getShipments()[0];
+
+        $this->assertTrue($shipment->hasErrors());
+        $this->assertCount(1, $shipment->getErrors());
+
+        $error = $shipment->getErrors()[0];
+
+        $this->assertEquals(103, $error->getCode());
+        $this->assertEquals('SenderDataError', $error->getMessage());
     }
 }
