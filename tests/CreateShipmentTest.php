@@ -88,6 +88,7 @@ class CreateShipmentTest extends AbstractTest
         $sender
             ->setIsCompany(false)
             ->setCompanyName('senderCompany')
+            ->setTaxId('1234567890')
             ->setFirstName('Marian')
             ->setLastName('Ziółko')
             ->setStreet('Żelazna')

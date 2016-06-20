@@ -22,6 +22,12 @@ abstract class AbstractPerson
      * @JMS\AccessType("public_method")
      * @JMS\XmlElement(cdata = false)
      */
+    protected $taxId;
+
+    /**
+     * @JMS\AccessType("public_method")
+     * @JMS\XmlElement(cdata = false)
+     */
     protected $firstName;
 
     /**
@@ -107,6 +113,28 @@ abstract class AbstractPerson
     public function setCompanyName($companyName)
     {
         $this->companyName = $companyName;
+        return $this;
+    }
+
+    /**
+     * Get taxId
+     *
+     * @return string
+     */
+    public function getTaxId()
+    {
+        return $this->taxId;
+    }
+
+    /**
+     * Set taxId
+     *
+     * @param string $taxId
+     * @return $this
+     */
+    public function setTaxId($taxId)
+    {
+        $this->taxId = $taxId;
         return $this;
     }
 
