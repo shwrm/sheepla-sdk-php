@@ -8,11 +8,11 @@ namespace Sheepla\Enums;
  */
 class ShipmentStatus
 {
+    const IN_PREPARATION = 1;
+    const REJECTED = 3;
     const WAIT_FOR_COMMON_REPORT = 4;
-    const IN_PREPARATION = 5; // @todo change it to the true value!
-    const DELIVERED = 6;
-    const REJECTED = 7;
-    const TO_SHIPMENT = 8;
+    const DELIVERED = 6; // @todo change it to the true value!
+    const TO_SHIPMENT = 8; // @todo change it to the true value!
 
     private static $statusNames = [
         self::WAIT_FOR_COMMON_REPORT => 'Oczekuje na raport zbiorczy',
