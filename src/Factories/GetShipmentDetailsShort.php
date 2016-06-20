@@ -41,7 +41,11 @@ class GetShipmentDetailsShort
      */
     public function createShipmentByEDTNRequest($labelId)
     {
-        return new \Sheepla\Request\Shipment\ShipmentByEDTN($labelId);
+        $shipment = new \Sheepla\Request\Shipment\ShipmentByEDTN;
+
+        $shipment->setEdtn($labelId);
+
+        return $shipment;
     }
 
     /**
