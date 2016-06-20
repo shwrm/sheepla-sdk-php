@@ -8,6 +8,7 @@
             <sender>
                 <isCompany>false</isCompany>
                 <companyName>senderCompany</companyName>
+                <taxId>1234567890</taxId>
                 <firstName>Marian</firstName>
                 <lastName>Ziółko</lastName>
                 <street>Żelazna</street>
