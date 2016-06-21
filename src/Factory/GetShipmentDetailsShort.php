@@ -1,13 +1,16 @@
 <?php
 
-namespace Sheepla\Factories;
+namespace Sheepla\Factory;
 
 class GetShipmentDetailsShort
 {
+    /**
+     * @var string
+     */
     private $apiKey;
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getApiKey()
     {
@@ -15,7 +18,7 @@ class GetShipmentDetailsShort
     }
 
     /**
-     * @param mixed $apiKey
+     * @param string $apiKey
      * @return $this
      */
     public function setApiKey($apiKey)
@@ -26,7 +29,7 @@ class GetShipmentDetailsShort
     }
 
     /**
-     * getShipmentDetailsShort constructor.
+     * @param string $apiKey
      */
     public function __construct($apiKey)
     {
@@ -55,7 +58,7 @@ class GetShipmentDetailsShort
      */
     public function createRequest()
     {
-       return new \Sheepla\Request\GetShipmentDetailsShort($this->getApiKey());
+        return new \Sheepla\Request\GetShipmentDetailsShort($this->getApiKey());
     }
 
     /**

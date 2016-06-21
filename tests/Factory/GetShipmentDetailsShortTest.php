@@ -1,8 +1,11 @@
 <?php
 
-use Sheepla\Factories\GetShipmentDetailsShort as Factory;
-use \Sheepla\Request\Shipment\ShipmentByEDTN;
+use Sheepla\Factory\GetShipmentDetailsShort as Factory;
+use Sheepla\Request\Shipment\ShipmentByEDTN;
 
+/**
+ * @covers \Sheepla\Factory\GetShipmentDetailsShort
+ */
 class GetShipmentDetailsShortTest extends \PHPUnit_Framework_TestCase
 {
     public function testConstructor()
@@ -53,6 +56,4 @@ class GetShipmentDetailsShortTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf(\Sheepla\Response\GetShipmentDetailsShort::class, $shipments);
     }
-
-
 }
