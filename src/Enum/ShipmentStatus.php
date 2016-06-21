@@ -1,6 +1,6 @@
 <?php
 
-namespace Sheepla\Enums;
+namespace Sheepla\Enum;
 
 /**
  * Class ShipmentStatus
