@@ -19,6 +19,12 @@ class Param
     private $value;
 
     /**
+     * @JMS\AccessType("public_method")
+     * @JMS\XmlAttribute()
+     */
+    private $currency;
+
+    /**
      * Get code
      *
      * @return string
@@ -62,5 +68,25 @@ class Param
         return $this;
     }
 
+    /**
+     * Get currency
+     *
+     * @return string
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
 
+    /**
+     * Set currency
+     *
+     * @param string $currency
+     * @return Param
+     */
+    public function setCurrency($currency)
+    {
+        $this->currency = $currency;
+        return $this;
+    }
 }

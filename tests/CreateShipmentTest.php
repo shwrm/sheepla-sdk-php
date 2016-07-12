@@ -126,6 +126,13 @@ class CreateShipmentTest extends AbstractTest
             ->setValue('WS-703256-31-09');
         $service->addParam($param);
 
+        $param = new Param();
+        $param
+            ->setCode('RuchCashOnDelivery')
+            ->setValue('10')
+            ->setCurrency('PLN');
+        $service->addParam($param);
+
         $shipment = new \Sheepla\Request\Shipment\Shipment();
         $shipment
             ->setId('testShipmentApi1')
