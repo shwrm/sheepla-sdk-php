@@ -129,7 +129,7 @@ class CreateShipmentTest extends AbstractTest
         $param = new Param();
         $param
             ->setCode('RuchCashOnDelivery')
-            ->setValue('10')
+            ->setValue('12.34')
             ->setCurrency('PLN');
         $service->addParam($param);
 
