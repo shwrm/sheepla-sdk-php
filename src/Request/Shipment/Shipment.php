@@ -4,6 +4,9 @@ namespace Sheepla\Request\Shipment;
 
 use JMS\Serializer\Annotation as JMS;
 
+/**
+ * @JMS\ExclusionPolicy("none")
+ */
 class Shipment
 {
     /**
@@ -13,6 +16,7 @@ class Shipment
     private $id;
 
     /**
+     * @JMS\Exclude()
      * @JMS\AccessType("public_method")
      * @JMS\Type("Sheepla\Request\Shipment\Sender")
      */

@@ -5,24 +5,6 @@
     <shipments>
         <shipment>
             <id>testShipmentApi1</id>
-            <sender>
-                <isCompany>false</isCompany>
-                <companyName>senderCompany</companyName>
-                <taxId>1234567890</taxId>
-                <firstName>Marian</firstName>
-                <lastName>Ziółko</lastName>
-                <street>Żelazna</street>
-                <homeNumber>67/77</homeNumber>
-                <zipCode>00-871</zipCode>
-                <city>Warszawa</city>
-                <countryCode>PL</countryCode>
-                <contact>
-                    <firstName>Marian</firstName>
-                    <lastName>Ziółko</lastName>
-                    <phone>601000000</phone>
-                    <email>Marian.Ziolko@sheepla.com</email>
-                </contact>
-            </sender>
             <recipient>
                 <isCompany>false</isCompany>
                 <companyName>recipientCompany</companyName>
