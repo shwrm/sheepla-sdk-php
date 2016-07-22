@@ -175,6 +175,12 @@ class CreateShipmentTest extends AbstractTest
         $this->assertInstanceOf(get_class($createShipmentResponse), $response);
         $this->assertNull($response->getErrors());
         $this->assertCount(1, $response->getShipments());
+
+        /** @var \Sheepla\Response\Shipment\Shipment $shipment */
+        $shipment = current($response->getShipments());
+        $this->assertEquals('XFXJZGC38XI9K223', $shipment->getEdtn());
+        $this->assertEquals(3, $shipment->getStatusId());
+        $this->assertEquals('Odrzucenie zgłoszenia', $shipment->getStatusName());
     }
 
     public function testCreateShipmentWithoutApiKey()

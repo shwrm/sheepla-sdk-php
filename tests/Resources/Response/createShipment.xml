@@ -2,6 +2,8 @@
     <shipments>
         <shipment id="testShipmentApi1">
             <edtn>XFXJZGC38XI9K223</edtn>
+            <statusId>3</statusId>
+            <statusName>Odrzucenie zgłoszenia</statusName>
         </shipment>
     </shipments>
 </createShipmentResponse>

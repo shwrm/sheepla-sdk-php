@@ -21,6 +21,18 @@ class Shipment extends AbstractResponse
     private $edtn;
 
     /**
+     * @JMS\AccessType("public_method")
+     * @JMS\Type("integer")
+     */
+    private $statusId;
+
+    /**
+     * @JMS\AccessType("public_method")
+     * @JMS\Type("string")
+     */
+    private $statusName;
+
+    /**
      * Get id
      *
      * @return string
@@ -61,6 +73,44 @@ class Shipment extends AbstractResponse
     public function setEdtn($edtn)
     {
         $this->edtn = $edtn;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStatusId()
+    {
+        return $this->statusId;
+    }
+
+    /**
+     * @param int $statusId
+     * @return Shipment
+     */
+    public function setStatusId($statusId)
+    {
+        $this->statusId = $statusId;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatusName()
+    {
+        return $this->statusName;
+    }
+
+    /**
+     * @param string $statusName
+     * @return $this
+     */
+    public function setStatusName($statusName)
+    {
+        $this->statusName = $statusName;
+
         return $this;
     }
 }
