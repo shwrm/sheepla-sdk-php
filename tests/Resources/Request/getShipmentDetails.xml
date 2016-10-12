@@ -1,0 +1,8 @@
+<getShipmentDetailsRequest xmlns="http://www.sheepla.pl/webapi/1_0">
+    <authentication>
+        <apiKey>API_KEY</apiKey>
+    </authentication>
+    <shipments>
+        <shipmentEDTN>XYZ</shipmentEDTN>
+    </shipments>
+</getShipmentDetailsRequest>
