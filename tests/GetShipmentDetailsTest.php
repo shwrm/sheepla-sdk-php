@@ -7,9 +7,11 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7\Response;
 use Sheepla\Client;
+use Sheepla\Response\Shipment\Status;
 use Sheepla\Request\GetShipmentDetails as GetShipmentDetailsRequest;
 use Sheepla\Response\GetShipmentDetails as GetShipmentDetailsResponse;
 use Sheepla\Request\Shipment\ShipmentByEDTN;
+use Sheepla\Response\Shipment\ShipmentDetails;
 
 class GetShipmentDetailsTest extends AbstractTest
 {
@@ -50,7 +52,7 @@ class GetShipmentDetailsTest extends AbstractTest
     public function testGetShipmentDetailsResponse()
     {
         $mock = new MockHandler([
-            new Response(200, [], file_get_contents('tests/Resources/Response/getShipmentDetails.xml')),
+            new Response(200, [], file_get_contents(__DIR__.'/Resources/Response/getShipmentDetails.xml')),
         ]);
 
         $handler = HandlerStack::create($mock);
@@ -69,5 +71,18 @@ class GetShipmentDetailsTest extends AbstractTest
         $this->assertInstanceOf(get_class($getShipmentDetailsResponse), $response);
         $this->assertNull($response->getErrors());
         $this->assertCount(1, $response->getShipments());
+
+        /** @var ShipmentDetails $shipmentDetails */
+        $shipmentDetails = current($response->getShipments());
+        $this->assertInstanceOf(ShipmentDetails::class, $shipmentDetails);
+        $this->assertCount(12, $shipmentDetails->getStatusHistory());
+
+        /** @var Status $status */
+        $status = current($shipmentDetails->getStatusHistory());
+        $this->assertInstanceOf(Status::class, $status);
+
+        $this->assertEquals('W przygotowaniu', $status->getStatusName());
+        $this->assertEquals(1, $status->getStatusId());
+        $this->assertEquals(0, $status->getSubStatusId());
     }
 }
