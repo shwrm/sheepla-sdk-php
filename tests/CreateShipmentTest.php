@@ -122,15 +122,23 @@ class CreateShipmentTest extends AbstractTest
         $service->setCode(1);
         $param = new Param();
         $param
-            ->setCode('RuchDestinationPOP')
+            ->setCode(Param::CODE_DESTINATION_POP)
             ->setValue('WS-703256-31-09');
         $service->addParam($param);
 
         $param = new Param();
         $param
-            ->setCode('RuchCashOnDelivery')
+            ->setCode(Param::CODE_COD)
             ->setValue('12.34')
             ->setCurrency('PLN');
+        $service->addParam($param);
+
+        $param = new Param();
+        $param
+            ->setCode(Param::CODE_RETURN_DESTINATION_POP)
+            ->setValue(1)
+        ;
+
         $service->addParam($param);
 
         $shipment = new \Sheepla\Request\Shipment\Shipment();

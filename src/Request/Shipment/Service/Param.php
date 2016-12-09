@@ -7,6 +7,30 @@ use JMS\Serializer\Annotation as JMS;
 class Param
 {
     /**
+     * @const string
+     */
+    const CODE_DESTINATION_POP = 'RuchDestinationPOP';
+
+    /**
+     * @const string
+     */
+    const CODE_RETURN_DESTINATION_POP = 'RuchReturnDestinationPOP';
+
+    /**
+     * @const string
+     */
+    const CODE_COD = 'RuchCashOnDelivery';
+
+    /**
+     * @const string[]
+     */
+    const CODES = [
+        self::CODE_DESTINATION_POP,
+        self::CODE_RETURN_DESTINATION_POP,
+        self::CODE_COD,
+    ];
+
+    /**
      * @JMS\AccessType("public_method")
      * @JMS\XmlAttribute()
      */
@@ -42,6 +66,10 @@ class Param
      */
     public function setCode($code)
     {
+        if (false === in_array($code, self::CODES)) {
+            throw new \InvalidArgumentException('Unsupported code.');
+        }
+
         $this->code = $code;
         return $this;
     }
