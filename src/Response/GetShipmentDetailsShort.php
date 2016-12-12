@@ -12,7 +12,7 @@ class GetShipmentDetailsShort extends AbstractResponse
 {
     /**
      * @JMS\AccessType("public_method")
-     * @JMS\Accessor(setter = "addShipment")
+     * @JMS\Accessor(setter = "setShipments")
      * @JMS\Type("array<Sheepla\Response\Shipment\ShipmentDetailsShort>")
      * @JMS\XmlList(entry="shipment")
      */
