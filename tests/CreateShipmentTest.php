@@ -136,7 +136,7 @@ class CreateShipmentTest extends AbstractTest
         $param = new Param();
         $param
             ->setCode(Param::CODE_RETURN_DESTINATION_POP)
-            ->setValue(1)
+            ->setValue('WS-680934-11-21')
         ;
 
         $service->addParam($param);
