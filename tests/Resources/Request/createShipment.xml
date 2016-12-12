@@ -45,6 +45,7 @@
                 <params>
                     <param code="RuchDestinationPOP" value="WS-703256-31-09"/>
                     <param code="RuchCashOnDelivery" value="12.34" currency="PLN"/>
+                    <param code="RuchReturnDestinationPOP" value="WS-680934-11-21"/>
                 </params>
             </service>
             <description>Test shipment description</description>
