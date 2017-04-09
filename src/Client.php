@@ -73,6 +73,7 @@ class Client
                 $request->getRequestMethod(),
                 [
                     'body' => $this->getSerializer()->serialize($request, self::FORMAT_XML),
+                    'connect_timeout' => 1,
                 ]
             );
 
