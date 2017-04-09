@@ -1,0 +1,11 @@
+machine:
+  php:
+    version: 5.6.18
+dependencies:
+  override:
+    - composer install --prefer-dist --no-interaction --optimize-autoloader
+    - echo "date.timezone = UTC" > /opt/circleci/php/$(phpenv global)/etc/conf.d/date.ini
+test:
+  override:
+    - mkdir -p $CIRCLE_TEST_REPORTS/phpunit
+    - ./vendor/bin/phpunit --log-junit $CIRCLE_TEST_REPORTS/phpunit/junit.xml tests
