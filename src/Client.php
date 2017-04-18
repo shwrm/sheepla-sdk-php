@@ -74,7 +74,6 @@ class Client
                 [
                     'body' => $this->getSerializer()->serialize($request, self::FORMAT_XML),
                     'connect_timeout' => 1,
-                    'verify' => false, // was valid until Fri, 14 Apr 2017 14:00:40 UTC
                 ]
             );
 
