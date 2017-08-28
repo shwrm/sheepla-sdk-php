@@ -4,6 +4,9 @@ namespace Sheepla\Response;
 
 use JMS\Serializer\Annotation as JMS;
 
+/**
+ * @JMS\XmlNamespace(uri="http://www.sheepla.pl/webapi/1_0")
+ */
 abstract class AbstractResponse
 {
     /**
