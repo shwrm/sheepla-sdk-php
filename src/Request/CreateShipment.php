@@ -10,8 +10,6 @@ use JMS\Serializer\Annotation as JMS;
 class CreateShipment extends AbstractRequest
 {
     /**
-     * @JMS\AccessType("public_method")
-     * @JMS\Accessor(setter = "addShipment")
      * @JMS\Type("array<Sheepla\Request\Shipment\Shipment>")
      * @JMS\XmlList(entry="shipment")
      */
