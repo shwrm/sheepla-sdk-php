@@ -28,6 +28,7 @@ class Shipment
     /**
      * @JMS\AccessType("public_method")
      * @JMS\XmlElement(cdata = false)
+     * @JMS\Type("string")
      */
     private $carrierAccount;
 
@@ -40,12 +41,14 @@ class Shipment
     /**
      * @JMS\AccessType("public_method")
      * @JMS\XmlElement(cdata = false)
+     * @JMS\Type("string")
      */
     private $description;
 
     /**
      * @JMS\AccessType("public_method")
      * @JMS\XmlElement(cdata = false)
+     * @JMS\Type("boolean")
      */
     private $confirmAfterCreate;
 
