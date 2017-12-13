@@ -14,8 +14,6 @@ class Service
     private $code;
 
     /**
-     * @JMS\AccessType("public_method")
-     * @JMS\Accessor(setter = "addParam")
      * @JMS\Type("array<Sheepla\Request\Shipment\Service\Param>")
      * @JMS\XmlList(entry="param")
      */
@@ -56,10 +54,10 @@ class Service
     /**
      * Add param
      *
-     * @param \Sheepla\Request\Shipment\Service\Param[] $param
+     * @param \Sheepla\Request\Shipment\Service\Param $param
      * @return Service
      */
-    public function addParam(array $param)
+    public function addParam(\Sheepla\Request\Shipment\Service\Param $param)
     {
         $this->params[] = $param;
         return $this;
