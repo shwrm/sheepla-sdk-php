@@ -56,10 +56,10 @@ class Service
     /**
      * Add param
      *
-     * @param \Sheepla\Request\Shipment\Service\Param $param
+     * @param \Sheepla\Request\Shipment\Service\Param[] $param
      * @return Service
      */
-    public function addParam(\Sheepla\Request\Shipment\Service\Param $param)
+    public function addParam(array $param)
     {
         $this->params[] = $param;
         return $this;
