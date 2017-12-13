@@ -33,18 +33,21 @@ class Param
     /**
      * @JMS\AccessType("public_method")
      * @JMS\XmlAttribute()
+     * @JMS\Type("string")
      */
     private $code;
 
     /**
      * @JMS\AccessType("public_method")
      * @JMS\XmlAttribute()
+     * @JMS\Type("string")
      */
     private $value;
 
     /**
      * @JMS\AccessType("public_method")
      * @JMS\XmlAttribute()
+     * @JMS\Type("string")
      */
     private $currency;
 

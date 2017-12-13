@@ -9,6 +9,7 @@ class Service
     /**
      * @JMS\AccessType("public_method")
      * @JMS\XmlAttribute()
+     * @JMS\Type("string")
      */
     private $code;
 
