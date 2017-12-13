@@ -9,6 +9,7 @@ class Shipment
     /**
      * @JMS\AccessType("public_method")
      * @JMS\XmlElement(cdata = false)
+     * @JMS\Type("string")
      */
     private $id;
 
