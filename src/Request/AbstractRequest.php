@@ -13,6 +13,7 @@ abstract class AbstractRequest
      * @JMS\XmlElement(cdata = false)
      * @JMS\Accessor(getter="getAuthentication")
      * @JMS\XmlKeyValuePairs
+     * @JMS\Type("array<string, string>")
      */
     protected $authentication = ['apiKey' => null];
 
