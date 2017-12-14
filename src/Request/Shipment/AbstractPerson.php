@@ -324,12 +324,19 @@ abstract class AbstractPerson
         return $this;
     }
 
+    /**
+     * Returns name as string
+     *
+     * @return string
+     */
     public function getName()
     {
-        return implode(" ", [
-           $this->getCompanyName(),
-           $this->getFirstName(),
-           $this->getLastName()
-        ]);
+        return implode(" ", array_unique([
+            $this->getCompanyName(),
+            $this->getFirstName(),
+            $this->getLastName(),
+            $this->getContact()->getFirstName(),
+            $this->getContact()->getLastName(),
+        ]));
     }
 }
