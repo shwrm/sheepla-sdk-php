@@ -323,4 +323,13 @@ abstract class AbstractPerson
         $this->contact = $contact;
         return $this;
     }
+
+    public function getName()
+    {
+        return implode(" ", [
+           $this->getCompanyName(),
+           $this->getFirstName(),
+           $this->getLastName()
+        ]);
+    }
 }
