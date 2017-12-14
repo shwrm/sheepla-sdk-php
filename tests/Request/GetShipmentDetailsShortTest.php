@@ -3,6 +3,7 @@
 namespace Sheepla\Test\Request;
 
 use Mockery as m;
+use Sheepla\Request\Authentication;
 use Sheepla\Request\GetShipmentDetailsShort;
 use Sheepla\Request\Shipment\ShipmentByEDTN;
 
@@ -21,8 +22,9 @@ class GetShipmentDetailsShortTest extends \PHPUnit_Framework_TestCase
 
     public function testAuthentication()
     {
-        $this->assertArrayHasKey('apiKey', self::$getShipmentDetails->getAuthentication());
-        $this->assertContains('API_KEY', self::$getShipmentDetails->getAuthentication());
+        $authentication = self::$getShipmentDetails->getAuthentication();
+        $this->assertInstanceOf(Authentication::class, $authentication);
+        $this->assertEquals('API_KEY', $authentication->getApiKey());
     }
 
     public function testRequestMethod()

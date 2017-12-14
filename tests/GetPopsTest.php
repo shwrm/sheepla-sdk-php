@@ -7,6 +7,7 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7\Response;
 use Sheepla\Client;
+use Sheepla\Request\Authentication;
 use Sheepla\Request\GetPops as RequestGetPops;
 use Sheepla\Response\GetPops as ResponseGetPops;
 
@@ -25,8 +26,9 @@ class GetPopsTest extends AbstractTest
 
     public function testAuthentication()
     {
-        $this->assertArrayHasKey('apiKey', self::$getPops->getAuthentication());
-        $this->assertContains('API_KEY', self::$getPops->getAuthentication());
+        $authentication = self::$getPops->getAuthentication();
+        $this->assertInstanceOf(Authentication::class, $authentication);
+        $this->assertEquals('API_KEY', $authentication->getApiKey());
     }
 
     public function testRequestMethod()

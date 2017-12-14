@@ -10,12 +10,9 @@ use JMS\Serializer\Annotation as JMS;
 abstract class AbstractRequest
 {
     /**
-     * @JMS\XmlElement(cdata = false)
-     * @JMS\Accessor(getter="getAuthentication")
-     * @JMS\XmlKeyValuePairs
-     * @JMS\Type("array<string, string>")
+     * @JMS\Type("Sheepla\Request\Authentication")
      */
-    protected $authentication = ['apiKey' => null];
+    protected $authentication;
 
     /**
      * AbstractRequest constructor.
@@ -23,13 +20,13 @@ abstract class AbstractRequest
      */
     public function __construct($apiKey)
     {
-        $this->authentication['apiKey'] = $apiKey;
+        $this->authentication = new Authentication($apiKey);
     }
 
     /**
      * Get authentication
      *
-     * @return array
+     * @return Authentication
      */
     public function getAuthentication()
     {

@@ -8,6 +8,7 @@ use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7\Response;
 use Mockery as m;
 use Sheepla\Client;
+use Sheepla\Request\Authentication;
 use Sheepla\Request\CreateShipment;
 use Sheepla\Request\Shipment\Contact;
 use Sheepla\Request\Shipment\Recipient;
@@ -36,8 +37,9 @@ class CreateShipmentTest extends AbstractTest
 
     public function testAuthentication()
     {
-        $this->assertArrayHasKey('apiKey', self::$createShipment->getAuthentication());
-        $this->assertContains('API_KEY', self::$createShipment->getAuthentication());
+        $authentication = self::$createShipment->getAuthentication();
+        $this->assertInstanceOf(Authentication::class, $authentication);
+        $this->assertEquals('API_KEY', $authentication->getApiKey());
     }
 
     public function testRequestMethod()
