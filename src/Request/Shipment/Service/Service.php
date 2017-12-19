@@ -4,6 +4,9 @@ namespace Sheepla\Request\Shipment\Service;
 
 use JMS\Serializer\Annotation as JMS;
 
+/**
+ * @JMS\XmlNamespace("http://www.sheepla.pl/webapi/1_0")
+ */
 class Service
 {
     /**
