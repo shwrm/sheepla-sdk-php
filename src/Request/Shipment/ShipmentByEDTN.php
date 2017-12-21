@@ -11,7 +11,7 @@ class ShipmentByEDTN
      *
      * @var string
      * @JMS\XmlValue(cdata=false)
-     * @JMS\AccessType("public_method")
+     * @JMS\Type("string")
      */
     private $edtn;
 
