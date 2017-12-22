@@ -9,24 +9,28 @@ class Contact
     /**
      * @JMS\AccessType("public_method")
      * @JMS\XmlElement(cdata = false)
+     * @JMS\Type("string")
      */
     private $firstName;
 
     /**
      * @JMS\AccessType("public_method")
      * @JMS\XmlElement(cdata = false)
+     * @JMS\Type("string")
      */
     private $lastName;
 
     /**
      * @JMS\AccessType("public_method")
      * @JMS\XmlElement(cdata = false)
+     * @JMS\Type("string")
      */
     private $phone;
 
     /**
      * @JMS\AccessType("public_method")
      * @JMS\XmlElement(cdata = false)
+     * @JMS\Type("string")
      */
     private $email;
 

@@ -4,17 +4,19 @@ namespace Sheepla\Request\Shipment\Service;
 
 use JMS\Serializer\Annotation as JMS;
 
+/**
+ * @JMS\XmlNamespace("http://www.sheepla.pl/webapi/1_0")
+ */
 class Service
 {
     /**
      * @JMS\AccessType("public_method")
      * @JMS\XmlAttribute()
+     * @JMS\Type("string")
      */
     private $code;
 
     /**
-     * @JMS\AccessType("public_method")
-     * @JMS\Accessor(setter = "addParam")
      * @JMS\Type("array<Sheepla\Request\Shipment\Service\Param>")
      * @JMS\XmlList(entry="param")
      */

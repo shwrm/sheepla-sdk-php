@@ -9,60 +9,70 @@ abstract class AbstractPerson
     /**
      * @JMS\AccessType("public_method")
      * @JMS\XmlElement(cdata = false)
+     * @JMS\Type("boolean")
      */
     protected $isCompany;
 
     /**
      * @JMS\AccessType("public_method")
      * @JMS\XmlElement(cdata = false)
+     * @JMS\Type("string")
      */
     protected $companyName;
 
     /**
      * @JMS\AccessType("public_method")
      * @JMS\XmlElement(cdata = false)
+     * @JMS\Type("string")
      */
     protected $taxId;
 
     /**
      * @JMS\AccessType("public_method")
      * @JMS\XmlElement(cdata = false)
+     * @JMS\Type("string")
      */
     protected $firstName;
 
     /**
      * @JMS\AccessType("public_method")
      * @JMS\XmlElement(cdata = false)
+     * @JMS\Type("string")
      */
     protected $lastName;
 
     /**
      * @JMS\AccessType("public_method")
      * @JMS\XmlElement(cdata = false)
+     * @JMS\Type("string")
      */
     protected $street;
 
     /**
      * @JMS\AccessType("public_method")
      * @JMS\XmlElement(cdata = false)
+     * @JMS\Type("string")
      */
     protected $homeNumber;
 
     /**
      * @JMS\AccessType("public_method")
      * @JMS\XmlElement(cdata = false)
+     * @JMS\Type("string")
      */
     protected $zipCode;
 
     /**
      * @JMS\AccessType("public_method")
      * @JMS\XmlElement(cdata = false)
+     * @JMS\Type("string")
      */
     protected $city;
 
     /**
      * @JMS\AccessType("public_method")
      * @JMS\XmlElement(cdata = false)
+     * @JMS\Type("string")
      */
     protected $countryCode;
 
@@ -312,5 +322,21 @@ abstract class AbstractPerson
     {
         $this->contact = $contact;
         return $this;
+    }
+
+    /**
+     * Returns name as string
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return implode(" ", array_unique([
+            $this->getCompanyName(),
+            $this->getFirstName(),
+            $this->getLastName(),
+            $this->getContact()->getFirstName(),
+            $this->getContact()->getLastName(),
+        ]));
     }
 }

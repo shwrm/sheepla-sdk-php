@@ -8,6 +8,7 @@ use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7\Response;
 use Mockery as m;
 use Sheepla\Client;
+use Sheepla\Request\Authentication;
 use Sheepla\Request\GetLabel;
 use Sheepla\Request\Shipment\ShipmentByEDTN;
 use Sheepla\Response\GetLabel as GetShipmentLabelsResponse;
@@ -30,8 +31,9 @@ class GetLabelTest extends AbstractTest
 
     public function testAuthentication()
     {
-        $this->assertArrayHasKey('apiKey', self::$getShipmentsByEDTNs->getAuthentication());
-        $this->assertContains('api-key', self::$getShipmentsByEDTNs->getAuthentication());
+        $authentication = self::$getShipmentsByEDTNs->getAuthentication();
+        $this->assertInstanceOf(Authentication::class, $authentication);
+        $this->assertEquals('api-key', $authentication->getApiKey());
     }
 
     public function testRequestMethod()
