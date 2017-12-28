@@ -9,8 +9,6 @@ trait CollectShipmentsByEDTNs
 {
     /**
      * @var ShipmentByEDTN[]
-     * @JMS\AccessType("public_method")
-     * @JMS\Accessor(setter = "addShipment")
      * @JMS\Type("array<Sheepla\Request\Shipment\ShipmentByEDTN>")
      * @JMS\XmlList(entry="shipmentEDTN")
      */
