@@ -41,6 +41,8 @@ class ShipmentByEDTN extends AbstractResponse
     public function setEdtn($edtn)
     {
         $this->edtn = $edtn;
+
+        return $this;
     }
 
     /**
@@ -57,11 +59,13 @@ class ShipmentByEDTN extends AbstractResponse
      * Set shipment label link
      *
      * @param string $shipmentLabelLink
+     *
      * @return $this
      */
     public function setShipmentLabelLink($shipmentLabelLink)
     {
         $this->shipmentLabelLink = $shipmentLabelLink;
+
         return $this;
     }
 }
